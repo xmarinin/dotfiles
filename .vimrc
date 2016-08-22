@@ -15,6 +15,7 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'scrooloose/nerdtree'
 
 " Editing
+Plugin 'editorconfig/editorconfig-vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'terryma/vim-multiple-cursors'
 
@@ -34,6 +35,7 @@ filetype plugin indent on  " required
 
 " Editing behavior
 set autoread " watch for file changes
+set noswapfile
 
 " Code style
 set tabstop=4
@@ -56,8 +58,14 @@ let g:airline_theme = 'luna' " requires vim-airline-themes
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#branch#enabled = 1 " requires vim-fugitive
 
+" NERDTree
+let NERDTreeShowHidden = 1
+let NERDTreeMinimalUI = 1
+let NERDTreeQuitOnOpen = 1
+
 " Keymap
-nmap ,tr :NERDTreeToggle<CR>
+nmap <Space> :NERDTreeToggle<CR>
+nmap f<Space> :NERDTreeFind<CR>
 
 " Unmap
 map Q <Nop>

@@ -9,7 +9,7 @@ function logger {
 }
 
 logger "Creating symlinks for vim..."
-ln -s $(pwd)/.vimrc $HOME/.vimrc
+ln -s $(pwd)/.vim $HOME/.vim
 ln -s $(pwd)/.vimrc $HOME/.vimrc
 
 logger "Installing vim plugins..."

@@ -46,7 +46,7 @@ syntax enable
 set number " displays line numbers
 set t_Co=256
 set background=dark
-colorscheme oceanicnext
+colorscheme OceanicNext
 highlight LineNr ctermfg=gray ctermbg=black
 
 " Airline 

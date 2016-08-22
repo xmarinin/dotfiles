@@ -1,10 +1,13 @@
 # Creamov Dotfiles ♥️
 
 # How to setup
-```(bash)
+```sh
+# Clone repo with sumbodules
 $ git clone --recursive https://github.com/Creamov/dotfiles.git
+
+# Initialize (Note that ./init creates symlincs only 
+# for .vim and .vimrc and installs plugins for vim)
 $ ./init
 
 # That's it!
-
 ```

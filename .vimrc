@@ -12,6 +12,11 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'flazz/vim-colorschemes'
+Plugin 'scrooloose/nerdtree'
+
+" Editing
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'terryma/vim-multiple-cursors'
 
 " Syntax Highlight
 Plugin 'othree/yajs.vim'
@@ -34,6 +39,7 @@ set autoread " watch for file changes
 set tabstop=4
 set shiftwidth=4
 set expandtab
+set smartindent
 
 " Theme
 syntax enable
@@ -49,3 +55,9 @@ let g:airline_powerline_fonts = 1
 let g:airline_theme = 'luna' " requires vim-airline-themes
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#branch#enabled = 1 " requires vim-fugitive
+
+" Keymap
+nmap ,tr :NERDTreeToggle<CR>
+
+" Unmap
+map Q <Nop>

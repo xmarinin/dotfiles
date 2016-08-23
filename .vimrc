@@ -14,10 +14,14 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'scrooloose/nerdtree'
 
+" Tools
+Plugin 'mileszs/ack.vim'
+
 " Editing
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'terryma/vim-multiple-cursors'
+" Plugin 'mattn/emmet-vim'
 
 " Syntax Highlight
 Plugin 'othree/yajs.vim'
@@ -34,31 +38,41 @@ filetype plugin indent on  " required
 " -----------------------------------------
 
 " Editing behavior
-set autoread " watch for file changes
-set noswapfile
+set autoread                    " Watch for file changes
+set autowrite                   " Automatically :write before running commands
+set noswapfile                  " Don't create/use swap file
+set encoding=utf-8              " Sets default encoding
+set fileencodings=utf-8,cp1251  " Lets open files in these encodings
 
 " Code style
 set tabstop=4
 set shiftwidth=4
 set expandtab
+set smarttab
 set smartindent
+set autoindent
 
 " Theme
 syntax enable
-set number " displays line numbers
+set number          " Shows line numbers
+set numberwidth=4   " Sets with of line numbers panel
 set t_Co=256
 set background=dark
 colorscheme OceanicNext
 highlight LineNr ctermfg=gray ctermbg=black
 
-" Airline 
-set laststatus=2  " enables vim-airline 
-let g:airline_powerline_fonts = 1
-let g:airline_theme = 'luna' " requires vim-airline-themes
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#branch#enabled = 1 " requires vim-fugitive
+" Airline Plugin / Status line
+set laststatus=2                              " Always display the status line 
+set showcmd                                   " Display incomplete commands
+let g:airline_powerline_fonts = 1             " Use porewline fonts to display icons in airline (requires: https://github.com/powerline/fonts)
+let g:airline_theme = 'luna'                  " Change theme of airline (requires: vim-airline-themes)
+let g:airline#extensions#tabline#enabled = 1  " Use arline for tabline
+let g:airline#extensions#branch#enabled  = 1  " Shows current git branch name (requires: vim-fugitive)
 
-" NERDTree
+" CtrlP Plugin
+let g:ctrlp_cmd = 'CtrlPBuffer' " Enables buffer mode by default
+
+" NERDTree Plugin
 let NERDTreeShowHidden = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeQuitOnOpen = 1
@@ -69,3 +83,10 @@ nmap f<Space> :NERDTreeFind<CR>
 
 " Unmap
 map Q <Nop>
+
+" Quicker window movement
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+

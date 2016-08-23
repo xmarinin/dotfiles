@@ -77,12 +77,25 @@ let NERDTreeShowHidden = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeQuitOnOpen = 1
 
-" Keymap
 nmap <Space> :NERDTreeToggle<CR>
 nmap f<Space> :NERDTreeFind<CR>
 
 " Unmap
 map Q <Nop>
+
+" Don't jump throught the line (if it too long and has word-wrap)
+noremap j gj
+noremap k gk
+
+" Add hotkey jump to the normal mode
+" see: http://vim.wikia.com/wiki/Avoid_the_escape_key
+imap jk <Esc>
+ 
+" Change cursor shape in different modes (iTerm only)
+" see: http://vim.wikia.com/wiki/Change_cursor_shape_in_different_modes
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
 " Quicker window movement
 nnoremap <C-j> <C-w>j

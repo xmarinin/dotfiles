@@ -54,8 +54,8 @@ set autoindent
 
 " Theme
 syntax enable
-set number          " Shows line numbers
-set numberwidth=4   " Sets with of line numbers panel
+" set number          " Shows line numbers
+" set numberwidth=4   " Sets with of line numbers panel
 set t_Co=256
 set background=dark
 colorscheme OceanicNext

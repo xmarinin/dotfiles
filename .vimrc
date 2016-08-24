@@ -15,19 +15,20 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'scrooloose/nerdtree'
 
 " Tools
-Plugin 'mileszs/ack.vim'
+Plugin 'mileszs/ack.vim' " requires ack > 2.0
 
 " Editing
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'ervandew/supertab'
 " Plugin 'mattn/emmet-vim'
 
 " Syntax Highlight
 Plugin 'othree/yajs.vim'
 
 " Git
-Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive' " to show branch name on airline
 
 call vundle#end()          " required
 filetype plugin indent on  " required
@@ -43,6 +44,7 @@ set autowrite                   " Automatically :write before running commands
 set noswapfile                  " Don't create/use swap file
 set encoding=utf-8              " Sets default encoding
 set fileencodings=utf-8,cp1251  " Lets open files in these encodings
+set hlsearch                    " Highlights search results (type :noh to temporarily hide it)
 
 " Code style
 set tabstop=4
@@ -98,8 +100,8 @@ let &t_SR = "\<Esc>]50;CursorShape=2\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
 " Quicker window movement
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
+" nnoremap <C-j> <C-w>j
+" nnoremap <C-k> <C-w>k
+" nnoremap <C-h> <C-w>h
+" nnoremap <C-l> <C-w>l
 

@@ -19,13 +19,13 @@ Plugin 'mileszs/ack.vim' " requires ack > 2.0
 
 " Editing
 Plugin 'editorconfig/editorconfig-vim'
-Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'ervandew/supertab'
 " Plugin 'mattn/emmet-vim'
 
 " Syntax Highlight
-Plugin 'othree/yajs.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
 
 " Git
 Plugin 'tpope/vim-fugitive' " to show branch name on airline
@@ -45,6 +45,17 @@ set noswapfile                  " Don't create/use swap file
 set encoding=utf-8              " Sets default encoding
 set fileencodings=utf-8,cp1251  " Lets open files in these encodings
 set hlsearch                    " Highlights search results (type :noh to temporarily hide it)
+set lazyredraw                  " Will buffer screen updates instead of updating all the time
+set path+=**                    " Lets :find works recursively
+set wildmenu                    " Enables wildmenu (helpful for autocomplete in command mode)
+set wildmode=full               " Tab will complete to first full match and open the wildmenu
+set wildignore=.DS_Store
+set ignorecase                  " By default vim uses case sensetive
+
+" Vim > 7.3 features
+if v:version > 703
+    set wildignorecase
+endif
 
 " Code style
 set tabstop=4
@@ -71,9 +82,6 @@ let g:airline_theme = 'luna'                  " Change theme of airline (require
 let g:airline#extensions#tabline#enabled = 1  " Use arline for tabline
 let g:airline#extensions#branch#enabled  = 1  " Shows current git branch name (requires: vim-fugitive)
 
-" CtrlP Plugin
-let g:ctrlp_cmd = 'CtrlPBuffer' " Enables buffer mode by default
-
 " NERDTree Plugin
 let NERDTreeShowHidden = 1
 let NERDTreeMinimalUI = 1
@@ -93,11 +101,20 @@ noremap k gk
 " see: http://vim.wikia.com/wiki/Avoid_the_escape_key
 imap jk <Esc>
  
-" Change cursor shape in different modes (iTerm only)
+" Change cursor shape in different modes (only for OSX + iTerm (+ tmux)?)
 " see: http://vim.wikia.com/wiki/Change_cursor_shape_in_different_modes
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_SR = "\<Esc>]50;CursorShape=2\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+if v:version > 703
+    let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
+endif
+let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+
+" Enter key will simply select the highlighted menu item,
+" just as <C-Y> does (that select item without inserting line break)
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Remove highlight of matches by pressing Ctrl+l
+nnoremap <C-L> :nohlsearch <CR><C-L>
 
 " Quicker window movement
 " nnoremap <C-j> <C-w>j

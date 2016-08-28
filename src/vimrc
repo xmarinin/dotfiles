@@ -60,7 +60,7 @@ set history=500                 " Store lots of history entries: :cmdline and se
 set shiftround                  " When at 3 spaces and I hit >>, go to 4, not 5
 set backspace=indent,eol,start  " Allow backspacing over everything in insert mode
 
-" set viminfo='10,\"100,:20,%,n~/.viminfo " Load previous session
+set viminfo+=!                  " Use ~/.viminfo to memorize previous sessions (plug vim-startify require it)
 
 " Search
 set incsearch                   " While typing a search command, show pattern matches as it is typed

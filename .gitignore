@@ -1,7 +1,4 @@
-.vim/.netrwhist
-.vim/autoload
-.vim/plugged
-.vim/bundle
+.vim/*
 .DS_Store
 .swp
 

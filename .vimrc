@@ -1,39 +1,40 @@
 set nocompatible           " be iMproved, required
-filetype off               " required
 
-" Set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" Auto-install vim-plug
+if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall
+    autocmd VimEnter * qall
+endif
 
-" Required
-Plugin 'VundleVim/Vundle.vim'
+call plug#begin('~/.vim/plugged')
 
 " Interface
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'scrooloose/nerdtree'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'flazz/vim-colorschemes'
+Plug 'scrooloose/nerdtree'
 
 " Editing
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'ervandew/supertab'
-" Plugin 'mattn/emmet-vim'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'ervandew/supertab'
+" Plug 'mattn/emmet-vim'
 
 " Syntax Highlight
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
 
 " Git
-Plugin 'tpope/vim-fugitive' " to show branch name on airline
+Plug 'tpope/vim-fugitive' " to show branch name on airline
 
-call vundle#end()          " required
-filetype plugin indent on  " required
-" see :h vundle for more details
+call plug#end() " Add plugins to &runtimepath
 
 " -----------------------------------------
 " Settings
 " -----------------------------------------
+
+filetype plugin indent on  " required
 
 " Editing Environment
 set autoread                    " Watch for file changes
@@ -94,7 +95,9 @@ syntax enable
 " set numberwidth=4   " Sets with of line numbers panel
 set t_Co=256
 set background=dark
-colorscheme OceanicNext
+if !empty(glob('~/.vim/plugged/vim-colorschemes/colors/OceanicNext.vim'))
+    colorscheme OceanicNext
+endif
 highlight LineNr ctermfg=gray ctermbg=black
 
 " Airline Plugin / Status line

@@ -12,7 +12,7 @@ logger "Creating symlinks for vim..."
 ln -s $(pwd)/.vim $HOME/.vim
 ln -s $(pwd)/.vimrc $HOME/.vimrc
 
-logger "Installing vim plugins..."
-vim +PluginInstall +qall
+logger "Installing vim-plug and do PlugInstall..."
+vim
 
 logger "Job's done! ;)"

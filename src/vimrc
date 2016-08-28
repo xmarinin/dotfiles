@@ -13,7 +13,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'flazz/vim-colorschemes'
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -45,6 +45,7 @@ set autowrite                   " Automatically :write before running commands
 set noswapfile                  " Don't create/use swap file
 set nobackup                    " Don't keep a backup file
 set encoding=utf-8              " Sets default encoding
+set fileformats=unix,dos        " Determines line endings (dos, unix or mac)
 set fileencodings=utf-8,cp1251  " Lets open files in these encodings
 set lazyredraw                  " Will buffer screen updates instead of updating all the time
 set path=.,,**                  " List of directories which will be searched when using :find, gf, etc.

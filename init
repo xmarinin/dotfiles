@@ -8,9 +8,11 @@ function logger {
     echo -e "${COLOR_B_PURPLE}[creamov:dotfiles]:${COLOR_WHITE} $1${COLOR_DEFAULT}"
 }
 
-logger "Creating symlinks for vim..."
+logger "Creating symlinks for vim, tmux and git..."
 ln -sf $(pwd)/src/vimrc $HOME/.vimrc
 ln -sf $(pwd)/src/tmux.conf $HOME/.tmux.conf
+ln -sf $(pwd)/src/gitconfig $HOME/.gitconfig
+
 
 logger "Installing vim-plug and do PlugInstall..."
 vim

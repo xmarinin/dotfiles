@@ -9,9 +9,8 @@ function logger {
 }
 
 logger "Creating symlinks for vim..."
-ln -sf $(pwd)/.vim $HOME/.vim
-ln -sf $(pwd)/.vimrc $HOME/.vimrc
-ln -sf $(pwd)/.tmux.conf $HOME/.tmux.conf
+ln -sf $(pwd)/src/vimrc $HOME/.vimrc
+ln -sf $(pwd)/src/tmux.conf $HOME/.tmux.conf
 
 logger "Installing vim-plug and do PlugInstall..."
 vim

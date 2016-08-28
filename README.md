@@ -1,8 +1,7 @@
 # Creamov Dotfiles ♥️
 
-#### How to setup
+### How to setup
 ```sh
-$ git clone https://github.com/Creamov/dotfiles.git && dotfiles/init
-
-# That's it!
+git clone https://github.com/Creamov/dotfiles.git && dotfiles/init
 ```
+That's it!

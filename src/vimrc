@@ -186,8 +186,12 @@ nnoremap <Leader>w <C-w>w
 " ,p - Like <p>, but adjust the indent to the current line and use the system clipboard
 map <Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>
 
-" C-p - Fuzzy seacrh 
+" C-p - Fuzzy seacrh
 nnoremap <C-p> :Files<cr>
+
+" Reselect visual block after indent/outdent
+vnoremap < <gv
+vnoremap > >gv
 
 " Ctrl+Shift+K or J now is the same as Ctrl+K or J
 " See: http://stackoverflow.com/questions/10340470/mapping-the-shift-key-in-vim

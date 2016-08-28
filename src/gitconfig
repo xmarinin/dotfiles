@@ -1,6 +1,10 @@
 [user]
     name = Creamov
     email = dev@creamov.com
+[core]
+    editor = vim
+[color]
+    ui = true
 [push]
     default = current
 [alias]

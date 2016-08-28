@@ -14,9 +14,6 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'scrooloose/nerdtree'
 
-" Tools
-Plugin 'mileszs/ack.vim' " requires ack > 2.0
-
 " Editing
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'terryma/vim-multiple-cursors'
@@ -42,29 +39,22 @@ filetype plugin indent on  " required
 set autoread                    " Watch for file changes
 set autowrite                   " Automatically :write before running commands
 set noswapfile                  " Don't create/use swap file
+set nobackup                    " Don't keep a backup file
 set encoding=utf-8              " Sets default encoding
 set fileencodings=utf-8,cp1251  " Lets open files in these encodings
 set lazyredraw                  " Will buffer screen updates instead of updating all the time
 set path=.,,**                  " List of directories which will be searched when using :find, gf, etc.
 set wildmenu                    " Enables wildmenu (helpful for autocomplete in command mode)
-set wildmode=full               " Tab will complete to first full match and open the wildmenu
-set wildignore=.DS_Store
+set wildmode=list,full          " Tab will complete to first full match and open the wildmenu
+set wildignore+=.DS_Store
 set hidden                      " Edit several files in the same time without having to save them
 set wrap                        " Wrap long lines
 set linebreak                   " Don't break words when wrapping
-set history=1000                " Store lots of history entries: :cmdline and search patterns
+set history=500                 " Store lots of history entries: :cmdline and search patterns
+set shiftround                  " When at 3 spaces and I hit >>, go to 4, not 5
+set backspace=indent,eol,start  " Allow backspacing over everything in insert mode
 
-" Backspacing settings
-"  - start     allow backspacing over the start of insert;
-"              CTRL-W and CTRL-U stop once at the start of insert.
-"  - indent    allow backspacing over autoindent
-"  - eol       allow backspacing over line breaks (join lines)
-set backspace=indent,eol,start
-
-set viminfo='10,\"100,:20,%,n~/.viminfo " Load previous session
-
-" Set cursor to its last position
-" au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
+" set viminfo='10,\"100,:20,%,n~/.viminfo " Load previous session
 
 " Search
 set incsearch                   " While typing a search command, show pattern matches as it is typed
@@ -123,7 +113,7 @@ let NERDTreeQuitOnOpen = 1
 nmap <Space> :NERDTreeToggle<CR>
 nmap f<Space> :NERDTreeFind<CR>
 
-" Unmap
+" Don't use Ex mode
 map Q <Nop>
 
 " Don't jump throught the line (if it too long and has word-wrap)
@@ -160,7 +150,33 @@ inoremap <C-k> <C-o>k
 inoremap <C-l> <C-o>l
 
 " Clear the search highlight in Normal mode
-nnoremap <silent> <Esc><Esc> :nohlsearch<CR><Esc>
+map <C-h> :nohlsearch<cr>
+
+" Emacs-like beginning and end of line (Insert/Command mode)
+inoremap <c-e> <c-o>$
+inoremap <c-a> <c-o>^
+cnoremap <c-e> <end>
+cnoremap <c-a> <home>
+
+let mapleader = ","
+
+" ,bl - Show buffers
+nnoremap <Leader>bl :<C-u>ls<cr>:b
+
+" ,bp - Go to prev buffer
+nnoremap <Leader>bp :<C-u>bp<cr>
+
+" ,bn - Go to next buffer
+nnoremap <Leader>bn :<C-u>bn<cr>
+
+" ,bd - Close current buffer
+nnoremap <Leader>bd :<C-u>bd!<cr>
+
+" ,w - Jump to next split
+nnoremap <Leader>w <C-w>w
+
+" ,p - Like <p>, but adjust the indent to the current line and use the system clipboard
+map <Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>
 
 " Ctrl+Shift+K or J now is the same as Ctrl+K or J
 " See: http://stackoverflow.com/questions/10340470/mapping-the-shift-key-in-vim
@@ -174,3 +190,20 @@ nnoremap <silent> <Esc><Esc> :nohlsearch<CR><Esc>
 " See http://www.vim.org/scripts/script.php?script_id=1590
 " vnoremap <C-S-k> xkP'[V']
 " vnoremap <C-S-j> xp'[V']
+
+" Only do this part when compiled with support for autocommands
+if has("autocmd")
+
+    " Put these in an autocmd group, so that we can delete them easily
+    augroup vimrcEx
+        au!
+
+        " When editing a file, always jump to the last known cursor position.
+        " Don't do it when the position is invalid or when inside an event handler
+        " (happens when dropping a file on gvim).
+        autocmd BufReadPost *
+            \ if line("'\"") > 0 && line("'\"") <= line("$") |
+            \   exe "normal g`\"" |
+            \ endif
+    augroup END
+endif

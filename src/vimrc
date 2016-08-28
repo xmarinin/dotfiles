@@ -15,6 +15,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'flazz/vim-colorschemes'
 Plug 'scrooloose/nerdtree'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 " Editing
 Plug 'editorconfig/editorconfig-vim'
@@ -181,6 +183,9 @@ nnoremap <Leader>w <C-w>w
 
 " ,p - Like <p>, but adjust the indent to the current line and use the system clipboard
 map <Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>
+
+" C-p - Fuzzy seacrh 
+nnoremap <C-p> :Files<cr>
 
 " Ctrl+Shift+K or J now is the same as Ctrl+K or J
 " See: http://stackoverflow.com/questions/10340470/mapping-the-shift-key-in-vim

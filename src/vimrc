@@ -68,6 +68,9 @@ set history=500                 " Store lots of history entries: :cmdline and se
 set shiftround                  " When at 3 spaces and I hit >>, go to 4, not 5
 set backspace=indent,eol,start  " Allow backspacing over everything in insert mode
 
+set timeoutlen=1000
+set ttimeoutlen=0               " Eliminating delays on <Esc>
+
 set viminfo+=!                  " Use ~/.viminfo to memorize previous sessions (plug vim-startify require it)
 
 " Search

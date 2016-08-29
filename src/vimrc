@@ -26,6 +26,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'mhinz/vim-startify'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'edkolev/tmuxline.vim'
 
 " Editing
 Plug 'editorconfig/editorconfig-vim'
@@ -121,8 +122,12 @@ set laststatus=2                              " Always display the status line
 set showcmd                                   " Display incomplete commands
 let g:airline_powerline_fonts = 1             " Use porewline fonts to display icons in airline (requires: https://github.com/powerline/fonts)
 let g:airline_theme = 'luna'                  " Change theme of airline (requires: vim-airline-themes)
+let g:airline#extensions#branch#enabled  = 0  " Shows current git branch name (requires: vim-fugitive)
 let g:airline#extensions#tabline#enabled = 1  " Use arline for tabline
-let g:airline#extensions#branch#enabled  = 1  " Shows current git branch name (requires: vim-fugitive)
+let g:airline#extensions#tabline#tab_min_count = 2
+let g:airline#extensions#tabline#buffer_min_count = 2
+let g:airline#extensions#tabline#show_close_button = 0
+let g:airline_section_z = '%3p/%L:%3v'
 
 " NERDTree Plugin
 let NERDTreeShowHidden = 1
@@ -140,6 +145,9 @@ let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
 " Emmet-vim Plugin (use <C-y>, to expand)
 let g:user_emmet_mode='a'                     " Enable all function in all mode
 
+" Tmuxline Plugin
+let g:tmuxline_theme = 'vim_statusline_1'
+let g:airline#extensions#tmuxline#enabled = 0
 
 " ============================
 " Keymaps

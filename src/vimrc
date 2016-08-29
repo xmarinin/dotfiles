@@ -69,6 +69,11 @@ set backspace=indent,eol,start  " Allow backspacing over everything in insert mo
 set scrolloff=7                 " Min number of lines that you would like above and below the cursor
 set sidescrolloff=15            " Min number of columns that you would like before and after the cursor
 
+" You can exit Vim, reboot your computer and still undo changes you made.
+" Vim inself doesn't create directory by given path (so, you need to create it before usage)
+set undodir=~/.vim/undo-dir
+set undofile
+
 set timeoutlen=1000
 set ttimeoutlen=0               " Eliminating delays on <Esc>
 

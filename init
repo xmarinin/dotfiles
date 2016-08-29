@@ -13,6 +13,9 @@ ln -sf $(pwd)/src/vimrc $HOME/.vimrc
 ln -sf $(pwd)/src/tmux.conf $HOME/.tmux.conf
 ln -sf $(pwd)/src/gitconfig $HOME/.gitconfig
 
+logger "Create undo-dir for vim..."
+mkdir -p $HOME/.vim/undo-dir
+
 logger "Installing vim-plug and do PlugInstall..."
 vim
 

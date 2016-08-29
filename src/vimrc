@@ -190,6 +190,14 @@ inoremap <c-a> <c-o>^
 cnoremap <c-e> <end>
 cnoremap <c-a> <home>
 
+" Resize vertical split
+nmap = <C-w>5>
+nmap - <C-w>5<
+
+" Resize horizontal split
+nmap + <C-W>+
+nmap _ <C-W>-
+
 let mapleader = ","
 
 " ,bl - Show buffers

@@ -10,7 +10,6 @@ if empty(glob('~/.vim/autoload/plug.vim'))
     autocmd VimEnter * qall
 endif
 
-
 " ============================
 "  Plugins
 " ============================
@@ -43,7 +42,6 @@ Plug 'tpope/vim-fugitive'
 
 call plug#end() " Add plugins to &runtimepath
 
-
 " ============================
 "  Environment
 " ============================
@@ -68,6 +66,8 @@ set linebreak                   " Don't break words when wrapping
 set history=500                 " Store lots of history entries: :cmdline and search patterns
 set shiftround                  " When at 3 spaces and I hit >>, go to 4, not 5
 set backspace=indent,eol,start  " Allow backspacing over everything in insert mode
+set scrolloff=7                 " Min number of lines that you would like above and below the cursor
+set sidescrolloff=15            " Min number of columns that you would like before and after the cursor
 
 set timeoutlen=1000
 set ttimeoutlen=0               " Eliminating delays on <Esc>
@@ -240,7 +240,6 @@ vnoremap > >gv
 " See http://www.vim.org/scripts/script.php?script_id=1590
 " vnoremap <C-S-k> xkP'[V']
 " vnoremap <C-S-j> xp'[V']
-
 
 " ============================
 "  Autocmd

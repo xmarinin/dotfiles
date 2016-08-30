@@ -32,6 +32,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'ervandew/supertab'
 Plug 'mattn/emmet-vim'
+Plug 'scrooloose/nerdcommenter'
 
 " Syntax Highlight
 Plug 'pangloss/vim-javascript'

@@ -4,7 +4,7 @@ Now it's just `.vimrc`, `.tmux.conf`, `.gitconfig`, and little bash-script `./in
 
 ## How to setup
 ```sh
-git clone https://github.com/Creamov/dotfiles.git && dotfiles/init
+git clone https://github.com/Creamov/dotfiles.git && cd dotfiles && ./init && cd -
 ```
 That's it. If your system is **MacOS** and you want to get much more powerful experience, note the next step.
 

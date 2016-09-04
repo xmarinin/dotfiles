@@ -139,6 +139,7 @@ let g:airline_section_z = '%3p/%L:%3v'
 let NERDTreeShowHidden = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeQuitOnOpen = 1
+let NERDTreeIgnore = ['.DS_Store']
 
 " Change cursor shape in different modes (only for OSX + iTerm (+ tmux)?)
 " see: http://vim.wikia.com/wiki/Change_cursor_shape_in_different_modes
@@ -207,7 +208,8 @@ nmap _ <C-W>-
 let mapleader = ","
 
 " ,bl - Show buffers
-nnoremap <Leader>bl :<C-u>ls<cr>:b
+" nnoremap <Leader>bl :<C-u>ls<cr>:b
+nnoremap <Leader>bl :Buffers<cr>
 
 " ,bp - Go to prev buffer
 nnoremap <Leader>bp :<C-u>bp<cr>

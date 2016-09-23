@@ -126,7 +126,7 @@ highlight LineNr ctermfg=gray ctermbg=black
 set laststatus=2                              " Always display the status line
 set showcmd                                   " Display incomplete commands
 let g:airline_powerline_fonts = 1             " Use porewline fonts to display icons in airline (requires: https://github.com/powerline/fonts)
-let g:airline_theme = 'luna'                  " Change theme of airline (requires: vim-airline-themes)
+let g:airline_theme = 'bubblegum'             " Change theme of airline (requires: vim-airline-themes)
 let g:airline#extensions#branch#enabled  = 1  " Shows current git branch name (requires: vim-fugitive)
 let g:airline#extensions#tabline#enabled = 1  " Use arline for tabline
 let g:airline#extensions#tabline#tab_min_count = 2

@@ -132,7 +132,7 @@ let g:airline#extensions#tabline#enabled = 1  " Use arline for tabline
 let g:airline#extensions#tabline#tab_min_count = 2
 let g:airline#extensions#tabline#buffer_min_count = 2
 let g:airline#extensions#tabline#show_close_button = 0
-let g:airline_section_z = '%3p/%L:%3v'
+let g:airline_section_z = '%n/%L:%3c'
 
 " NERDTree Plugin
 let NERDTreeShowHidden = 1
@@ -254,7 +254,6 @@ vnoremap > >gv
 
 " Only do this part when compiled with support for autocommands
 if has("autocmd")
-
     " Put these in an autocmd group, so that we can delete them easily
     augroup vimrcEx
         au!
@@ -266,5 +265,6 @@ if has("autocmd")
             \ if line("'\"") > 0 && line("'\"") <= line("$") |
             \   exe "normal g`\"" |
             \ endif
+
     augroup END
 endif

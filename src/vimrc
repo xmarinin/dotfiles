@@ -115,6 +115,7 @@ set autoindent
 syntax enable
 " set number          " Shows line numbers
 " set numberwidth=4   " Sets with of line numbers panel
+set t_Co=256          " Enables support of 256 colors with Tmux
 highlight LineNr ctermfg=gray ctermbg=black
 
 " Base16-shell (https://github.com/chriskempson/base16-shell)
@@ -135,7 +136,7 @@ endif
 set laststatus=2                              " Always display the status line
 set showcmd                                   " Display incomplete commands
 let g:airline_powerline_fonts = 1             " Use porewline fonts to display icons in airline (requires: https://github.com/powerline/fonts)
-let g:airline_theme = 'bubblegum'             " Change theme of airline (requires: vim-airline-themes)
+let g:airline_theme = 'base16'                " Change theme of airline (requires: vim-airline-themes)
 let g:airline#extensions#branch#enabled  = 1  " Shows current git branch name (requires: vim-fugitive)
 let g:airline#extensions#tabline#enabled = 1  " Use arline for tabline
 let g:airline#extensions#tabline#tab_min_count = 2
@@ -161,7 +162,7 @@ let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
 let g:user_emmet_mode='a'                     " Enable all function in all mode
 
 " Tmuxline Plugin
-let g:tmuxline_theme = 'vim_statusline_1'
+silent autocmd VimEnter Tmuxline vim_statusline_1
 let g:airline#extensions#tmuxline#enabled = 0
 
 " ============================

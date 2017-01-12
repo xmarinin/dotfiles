@@ -19,7 +19,7 @@ call plug#begin('~/.vim/plugged')
 " Interface
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'flazz/vim-colorschemes'
+Plug 'chriskempson/base16-vim'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'mhinz/vim-startify'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -115,12 +115,13 @@ set autoindent
 syntax enable
 " set number          " Shows line numbers
 " set numberwidth=4   " Sets with of line numbers panel
-set t_Co=256
-set background=dark
-if !empty(glob('~/.vim/plugged/vim-colorschemes/colors/OceanicNext.vim'))
-    colorscheme OceanicNext
-endif
 highlight LineNr ctermfg=gray ctermbg=black
+
+" Base16-shell (https://github.com/chriskempson/base16-shell)
+if filereadable(expand("~/.vimrc_background"))
+    let base16colorspace=256
+    source ~/.vimrc_background
+endif
 
 " Airline Plugin / Status line
 set laststatus=2                              " Always display the status line
@@ -132,7 +133,7 @@ let g:airline#extensions#tabline#enabled = 1  " Use arline for tabline
 let g:airline#extensions#tabline#tab_min_count = 2
 let g:airline#extensions#tabline#buffer_min_count = 2
 let g:airline#extensions#tabline#show_close_button = 0
-let g:airline_section_z = '%n/%L:%3c'
+let g:airline_section_z = '%l/%L:%3c'
 
 " NERDTree Plugin
 let NERDTreeShowHidden = 1

@@ -33,7 +33,6 @@ Plug 'ervandew/supertab'
 Plug 'mattn/emmet-vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-surround'   " fast wrap surroundings
-Plug 'jiangmiao/auto-pairs' " insert or delete brackets, parens, quotes in pair
 
 " Syntax Highlight
 Plug 'pangloss/vim-javascript'

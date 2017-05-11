@@ -117,7 +117,6 @@ syntax enable
 " set number          " Shows line numbers
 " set numberwidth=4   " Sets with of line numbers panel
 set t_Co=256          " Enables support of 256 colors
-set termguicolors
 highlight LineNr ctermfg=gray ctermbg=black
 
 " Base16-shell (https://github.com/chriskempson/base16-shell)
@@ -145,12 +144,19 @@ let g:airline#extensions#tabline#tab_min_count = 2
 let g:airline#extensions#tabline#buffer_min_count = 2
 let g:airline#extensions#tabline#show_close_button = 0
 let g:airline_section_z = '%l/%L:%3c'
+let g:airline_right_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_left_alt_sep= ''
+let g:airline_left_sep = ''
 
 " NERDTree Plugin
 let NERDTreeShowHidden = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeQuitOnOpen = 1
 let NERDTreeIgnore = ['.DS_Store']
+
+" vim-javascript
+let g:javascript_plugin_jsdoc = 1
 
 " Change cursor shape in different modes (only for OSX + iTerm (+ tmux)?)
 " see: http://vim.wikia.com/wiki/Change_cursor_shape_in_different_modes
@@ -166,6 +172,7 @@ let g:user_emmet_mode='a'                     " Enable all function in all mode
 " Tmuxline Plugin
 autocmd VimEnter * silent! Tmuxline vim_statusline_1
 let g:airline#extensions#tmuxline#enabled = 0
+let g:tmuxline_powerline_separators = 0
 
 " ============================
 " Keymaps

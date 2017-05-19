@@ -33,6 +33,7 @@ Plug 'ervandew/supertab'
 Plug 'mattn/emmet-vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-surround'   " fast wrap surroundings
+Plug 'Raimondi/delimitMate'
 
 " Syntax Highlight
 Plug 'pangloss/vim-javascript'
@@ -158,6 +159,9 @@ let NERDTreeIgnore = ['.DS_Store']
 " vim-javascript
 let g:javascript_plugin_jsdoc = 1
 
+" delimitMate
+let delimitMate_expand_cr = 1
+
 " Change cursor shape in different modes (only for OSX + iTerm (+ tmux)?)
 " see: http://vim.wikia.com/wiki/Change_cursor_shape_in_different_modes
 let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
@@ -194,7 +198,10 @@ imap jk <Esc>
 
 " Enter key will simply select the highlighted menu item,
 " just as <C-Y> does (that select item without inserting line break)
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+"
+" see issue: https://github.com/Raimondi/delimitMate/issues/125
+" inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+imap <expr> <CR> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
 
 " Quicker window movement
 " after C-l do default C-l to clear and redraw the screen

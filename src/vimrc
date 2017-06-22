@@ -134,6 +134,9 @@ else
     endif
 endif
 
+" vim-fugitive (opens :Gdiff as vertical splits instead of horizontal)
+set diffopt+=vertical
+
 " Airline Plugin / Status line
 set laststatus=2                              " Always display the status line
 set showcmd                                   " Display incomplete commands

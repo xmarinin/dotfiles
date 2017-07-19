@@ -252,7 +252,8 @@ nnoremap <Leader>bd :<C-u>bd!<cr>
 nnoremap <Leader>w <C-w>w
 
 " ,p - Like <p>, but adjust the indent to the current line and use the system clipboard
-map <Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>
+"map <Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>
+nnoremap <Leader>p :set invpaste paste?<cr>
 
 " ,h - Clear the search highlight in Normal mode
 map <Leader>h :nohlsearch<cr>

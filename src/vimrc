@@ -38,6 +38,7 @@ Plug 'Raimondi/delimitMate'
 " Syntax Highlight
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
+Plug 'evidens/vim-twig'
 
 " Git
 Plug 'tpope/vim-fugitive'

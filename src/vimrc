@@ -28,6 +28,7 @@ Plug 'edkolev/tmuxline.vim'
 
 " Editing
 Plug 'editorconfig/editorconfig-vim'
+Plug 'tpope/vim-repeat'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'ervandew/supertab'
 Plug 'mattn/emmet-vim'

@@ -32,7 +32,8 @@ Plug 'tpope/vim-repeat'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'ervandew/supertab'
 Plug 'mattn/emmet-vim'
-Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-commentary'
+Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'tpope/vim-surround'   " fast wrap surroundings
 Plug 'Raimondi/delimitMate'
 

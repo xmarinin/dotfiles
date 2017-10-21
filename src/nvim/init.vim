@@ -18,13 +18,14 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'chriskempson/base16-vim'
-Plug 'scrooloose/nerdtree' ", { 'on':  'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+" should init after nedrtree, (install before https://github.com/ryanoasis/nerd-fonts)
+Plug 'ryanoasis/vim-devicons', { 'on':  'NERDTreeToggle' }
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'on':  'NERDTreeToggle' }
 Plug 'mhinz/vim-startify'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'edkolev/tmuxline.vim'
-Plug 'ryanoasis/vim-devicons' " should init after nedrtree, (install before https://github.com/ryanoasis/nerd-fonts)
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " Editing
 Plug 'editorconfig/editorconfig-vim'
@@ -157,13 +158,6 @@ set diffopt+=vertical
 " the amount of space to use after the glyph character (default '  ')
 let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
 
-" enable open and close folder/directory glyph flags (disabled by default with 0)
-" let g:DevIconsEnableFoldersOpenClose = 1
-
-" disabled because a have no idea how to hide NERDTree arrows
-" enable folder/directory glyph flag (disabled by default with 0)
-" let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-
 " whether or not to show the nerdtree brackets around flags (1 to disable)
 let g:webdevicons_conceal_nerdtree_brackets = 1
 
@@ -189,10 +183,6 @@ let NERDTreeShowHidden = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeQuitOnOpen = 1
 let NERDTreeIgnore = ['.DS_Store']
-
-" i don't need the arrows when using ryanoasis/vim-devicons
-" let NERDTreeDirArrowExpandable = " "
-" let NERDTreeDirArrowCollapsible = " "
 
 " vim-javascript
 let g:javascript_plugin_jsdoc = 1

@@ -148,8 +148,8 @@ else
 endif
 
 " @see help http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
-highlight LineNr cterm=NONE ctermbg=black ctermfg=8 guibg=#000000 guifg=#000000
-highlight CursorLineNr cterm=NONE ctermbg=black ctermfg=8 guibg=#000000 guifg=#000000
+highlight LineNr cterm=NONE ctermbg=black ctermfg=8 guibg=NONE guifg=grey
+highlight CursorLineNr cterm=NONE ctermbg=black ctermfg=8 guibg=NONE guifg=grey
 
 " vim-fugitive (opens :Gdiff as vertical splits instead of horizontal)
 set diffopt+=vertical

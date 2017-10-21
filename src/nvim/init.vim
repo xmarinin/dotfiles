@@ -1,11 +1,9 @@
-set nocompatible           " be iMproved, required
-
 " ============================
 "  Auto install vim-plug
 " ============================
 
-if empty(glob('~/.vim/autoload/plug.vim'))
-    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+    silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     autocmd VimEnter * PlugInstall
     autocmd VimEnter * qall
 endif
@@ -14,17 +12,19 @@ endif
 "  Plugins
 " ============================
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.local/share/nvim/plugged')
 
 " Interface
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'chriskempson/base16-vim'
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree' ", { 'on':  'NERDTreeToggle' }
 Plug 'mhinz/vim-startify'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'edkolev/tmuxline.vim'
+Plug 'ryanoasis/vim-devicons' " should init after nedrtree, (install before https://github.com/ryanoasis/nerd-fonts)
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " Editing
 Plug 'editorconfig/editorconfig-vim'
@@ -34,12 +34,18 @@ Plug 'ervandew/supertab'
 Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-commentary'
 Plug 'vim-scripts/ReplaceWithRegister'
-Plug 'tpope/vim-surround'   " fast wrap surroundings
+Plug 'vim-scripts/ReplaceWithSameIndentRegister'
+Plug 'tpope/vim-surround'
 Plug 'Raimondi/delimitMate'
+Plug 'christoomey/vim-sort-motion'
+Plug 'christoomey/vim-system-copy'
+Plug 'w0rp/ale' " Asynchronous Lint Engine
 
 " Syntax Highlight
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
+Plug 'mhartington/oceanic-next'
+Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
+" Plug 'othree/yajs.vim', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'evidens/vim-twig'
 
 " Git
@@ -72,7 +78,9 @@ set history=500                 " Store lots of history entries: :cmdline and se
 set shiftround                  " When at 3 spaces and I hit >>, go to 4, not 5
 set backspace=indent,eol,start  " Allow backspacing over everything in insert mode
 set scrolloff=7                 " Min number of lines that you would like above and below the cursor
-set sidescrolloff=15            " Min number of columns that you would like before and after the cursor
+" set number          " Shows line numbers
+" set numberwidth=4   " Sets with of line numbers panel
+set relativenumber
 
 " You can exit Vim, reboot your computer and still undo changes you made.
 " Vim inself doesn't create directory by given path (so, you need to create it before usage)
@@ -98,7 +106,7 @@ endif
 set list                        " Display invisible character
 
 if version >= 700
-    set listchars=tab:▸\ ,trail:·,extends:❯,precedes:❮,nbsp:×
+    set listchars=tab:▸\ ,trail:·,extends:❯,precedes:❮ ",nbsp:×
 else
     set listchars=tab:»\ ,trail:·,extends:>,precedes:<,nbsp:_
 endif
@@ -118,17 +126,19 @@ set autoindent
 
 " Theme
 syntax enable
-" set number          " Shows line numbers
-" set numberwidth=4   " Sets with of line numbers panel
-set t_Co=256          " Enables support of 256 colors
-highlight LineNr ctermfg=gray ctermbg=black
+
+if (empty($TMUX))
+    if (has("termguicolors"))
+        set termguicolors
+    endif
+endif
 
 " Base16-shell (https://github.com/chriskempson/base16-shell)
 if filereadable(expand("~/.vimrc_background"))
     let base16colorspace=256
     source ~/.vimrc_background
 else
-    if !empty(glob('~/.vim/plugged/base16-vim/colors/base16-oceanicnext.vim'))
+    if !empty(glob('~/.local/share/nvim/plugged/base16-vim/colors/base16-oceanicnext.vim'))
         colorscheme base16-oceanicnext
         echo ' '
         echo 'You should install base16-shell to get best UX of colorscheme (base16-oceanicnext)'
@@ -137,8 +147,25 @@ else
     endif
 endif
 
+" @see help http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
+highlight LineNr cterm=NONE ctermbg=black ctermfg=8 guibg=#000000 guifg=#000000
+highlight CursorLineNr cterm=NONE ctermbg=black ctermfg=8 guibg=#000000 guifg=#000000
+
 " vim-fugitive (opens :Gdiff as vertical splits instead of horizontal)
 set diffopt+=vertical
+
+" the amount of space to use after the glyph character (default '  ')
+let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
+
+" enable open and close folder/directory glyph flags (disabled by default with 0)
+" let g:DevIconsEnableFoldersOpenClose = 1
+
+" disabled because a have no idea how to hide NERDTree arrows
+" enable folder/directory glyph flag (disabled by default with 0)
+" let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+
+" whether or not to show the nerdtree brackets around flags (1 to disable)
+let g:webdevicons_conceal_nerdtree_brackets = 1
 
 " Airline Plugin / Status line
 set laststatus=2                              " Always display the status line
@@ -150,6 +177,7 @@ let g:airline#extensions#tabline#enabled = 1  " Use arline for tabline
 let g:airline#extensions#tabline#tab_min_count = 2
 let g:airline#extensions#tabline#buffer_min_count = 2
 let g:airline#extensions#tabline#show_close_button = 0
+let g:airline#extensions#ale#enabled = 1
 let g:airline_section_z = '%l/%L:%3c'
 let g:airline_right_alt_sep = ''
 let g:airline_right_sep = ''
@@ -161,6 +189,10 @@ let NERDTreeShowHidden = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeQuitOnOpen = 1
 let NERDTreeIgnore = ['.DS_Store']
+
+" i don't need the arrows when using ryanoasis/vim-devicons
+" let NERDTreeDirArrowExpandable = " "
+" let NERDTreeDirArrowCollapsible = " "
 
 " vim-javascript
 let g:javascript_plugin_jsdoc = 1

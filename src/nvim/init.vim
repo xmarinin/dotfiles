@@ -32,7 +32,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-repeat'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'ervandew/supertab'
-Plug 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim' " <C-y>, to expand
 Plug 'tpope/vim-commentary'
 Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'vim-scripts/ReplaceWithSameIndentRegister'
@@ -43,7 +43,6 @@ Plug 'christoomey/vim-system-copy'
 Plug 'w0rp/ale' " Asynchronous Lint Engine
 
 " Syntax Highlight
-Plug 'mhartington/oceanic-next'
 Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
 " Plug 'othree/yajs.vim', { 'for': ['javascript', 'javascript.jsx'] }
@@ -139,18 +138,24 @@ if filereadable(expand("~/.vimrc_background"))
     let base16colorspace=256
     source ~/.vimrc_background
 else
-    if !empty(glob('~/.local/share/nvim/plugged/base16-vim/colors/base16-oceanicnext.vim'))
-        colorscheme base16-oceanicnext
+    if !empty(glob('~/.local/share/nvim/plugged/base16-vim/colors/base16-tomorrow.vim'))
+        colorscheme base16-tomorrow
         echo ' '
-        echo 'You should install base16-shell to get best UX of colorscheme (base16-oceanicnext)'
+        echo 'You should install base16-shell to get best UX of colorscheme (base16-tomorrow)'
         echo 'See https://github.com/chriskempson/base16-shell'
         echo ' '
     endif
 endif
 
 " @see help http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
-highlight LineNr cterm=NONE ctermbg=black ctermfg=8 guibg=NONE guifg=grey
-highlight CursorLineNr cterm=NONE ctermbg=black ctermfg=8 guibg=NONE guifg=grey
+highlight LineNr cterm=NONE ctermbg=black ctermfg=444 guibg=NONE guifg=grey
+highlight CursorLineNr cterm=NONE ctermbg=black ctermfg=444 guibg=NONE guifg=grey
+
+set fillchars+=vert:│
+highlight VertSplit ctermbg=NONE guibg=NONE ctermfg=444
+highlight Search ctermbg=3 ctermfg=black guibg=3 guifg=black
+highlight Visual ctermbg=20 ctermfg=NONE guibg=#795da3
+highlight NonText ctermfg=444
 
 " vim-fugitive (opens :Gdiff as vertical splits instead of horizontal)
 set diffopt+=vertical

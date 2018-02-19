@@ -24,4 +24,8 @@ mkdir -p $HOME/.vim/undo-dir
 logger "Installing vim-plug and do PlugInstall..."
 vim
 
+DEFAULT_THEME=base16_default-dark
+logger "Try to set ${DEFAULT_THEME}"
+eval $DEFAULT_THEME
+
 logger "Job's done! ;)"

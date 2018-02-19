@@ -144,8 +144,8 @@ if filereadable(expand("~/.vimrc_background"))
     let base16colorspace=256
     source ~/.vimrc_background
 else
-    if !empty(glob('~/.local/share/nvim/plugged/base16-vim/colors/base16-tomorrow.vim'))
-        colorscheme base16-tomorrow
+    if !empty(glob('~/.local/share/nvim/plugged/base16-vim/colors/base16-default-dark.vim'))
+        colorscheme base16-default-dark
         echo ' '
         echo 'You should install base16-shell to get best UX of colorscheme (base16-tomorrow)'
         echo 'See https://github.com/chriskempson/base16-shell'
@@ -153,15 +153,30 @@ else
     endif
 endif
 
-" @see help http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
-highlight LineNr cterm=NONE ctermbg=black ctermfg=444 guibg=NONE guifg=grey
-highlight CursorLineNr cterm=NONE ctermbg=black ctermfg=444 guibg=NONE guifg=grey
-
 set fillchars+=vert:│
-highlight VertSplit ctermbg=NONE guibg=NONE ctermfg=444
-highlight Search ctermbg=3 ctermfg=black guibg=3 guifg=black
-highlight Visual ctermbg=20 ctermfg=NONE guibg=#795da3
-highlight NonText ctermfg=444
+
+" ==== Themes customization =================================================================
+
+" ---- For dark themes (like base16_default-dark) -------------------------------------------
+
+" @see help http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
+highlight LineNr cterm=NONE ctermbg=black ctermfg=240 guibg=NONE guifg=grey
+highlight CursorLineNr cterm=NONE ctermbg=black ctermfg=240 guibg=NONE guifg=grey
+
+highlight VertSplit ctermbg=NONE guibg=NONE ctermfg=black
+
+" ---- For light themes (like base16_github) ------------------------------------------------
+
+" @see help http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
+" highlight LineNr cterm=NONE ctermbg=black ctermfg=444 guibg=NONE guifg=grey
+" highlight CursorLineNr cterm=NONE ctermbg=black ctermfg=444 guibg=NONE guifg=grey
+"
+" highlight VertSplit ctermbg=NONE guibg=NONE ctermfg=444
+" highlight Search ctermbg=3 ctermfg=black guibg=3 guifg=black
+" highlight Visual ctermbg=20 ctermfg=NONE guibg=#795da3
+" highlight NonText ctermfg=444
+
+" ==== /Themes customization ================================================================
 
 " vim-fugitive (opens :Gdiff as vertical splits instead of horizontal)
 set diffopt+=vertical

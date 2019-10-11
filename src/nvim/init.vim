@@ -33,12 +33,21 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'edkolev/tmuxline.vim'
 
+" Asynchronous completion framework
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim' ", { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+
 " Editing
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-repeat'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'ervandew/supertab'
-Plug 'mattn/emmet-vim' " <C-y>, to expand
+" Plug 'mattn/emmet-vim' " <C-y>, to expand
 Plug 'tpope/vim-commentary'
 Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'vim-scripts/ReplaceWithSameIndentRegister'
@@ -46,13 +55,19 @@ Plug 'tpope/vim-surround'
 Plug 'Raimondi/delimitMate'
 Plug 'christoomey/vim-sort-motion'
 Plug 'christoomey/vim-system-copy'
-Plug 'w0rp/ale' " Asynchronous Lint Engine
+Plug 'dense-analysis/ale' " Asynchronous Lint Engine
+" Plug 'Yggdroot/indentLine'
+" Plug 'easymotion/vim-easymotion'
 
 " Syntax Highlight
-Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
-" Plug 'othree/yajs.vim', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'pangloss/vim-javascript', { 'for': ['js', 'jsx'] }
+Plug 'mxw/vim-jsx', { 'for': ['js', 'jsx'] }
+" Plug 'othree/yajs.vim', { 'for': ['js', 'jsx'] }
 Plug 'evidens/vim-twig'
+
+" Typescript Highlight
+Plug 'HerringtonDarkholme/yats.vim', { 'for': ['ts', 'tsx'] }
+Plug 'mhartington/nvim-typescript', { 'for': ['ts', 'tsx'], 'do': './install.sh' } " don't forget to run :UpdateRemotePlugins after installation
 
 " Git
 Plug 'tpope/vim-fugitive'
@@ -75,7 +90,7 @@ set fileencodings=utf-8,cp1251  " Lets open files in these encodings
 set lazyredraw                  " Will buffer screen updates instead of updating all the time
 set path=.,,**                  " List of directories which will be searched when using :find, gf, etc.
 set wildmenu                    " Enables wildmenu (helpful for autocomplete in command mode)
-set wildmode=list,full          " Tab will complete to first full match and open the wildmenu
+set wildmode=list:longest,full  " Tab will complete to first full match and open the wildmenu
 set wildignore+=.DS_Store
 set hidden                      " Edit several files in the same time without having to save them
 set wrap                        " Wrap long lines
@@ -112,7 +127,7 @@ endif
 set list                        " Display invisible character
 
 if version >= 700
-    set listchars=tab:▸\ ,trail:·,extends:❯,precedes:❮ ",nbsp:×
+    set listchars=tab:▸\ ,trail:·,extends:❯,precedes:❮,nbsp:×
 else
     set listchars=tab:»\ ,trail:·,extends:>,precedes:<,nbsp:_
 endif
@@ -182,7 +197,7 @@ highlight VertSplit ctermbg=NONE guibg=NONE ctermfg=black
 set diffopt+=vertical
 
 " the amount of space to use after the glyph character (default '  ')
-let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
+let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
 
 " whether or not to show the nerdtree brackets around flags (1 to disable)
 let g:webdevicons_conceal_nerdtree_brackets = 1
@@ -210,13 +225,27 @@ let NERDTreeMinimalUI = 1
 let NERDTreeQuitOnOpen = 1
 let NERDTreeIgnore = ['.DS_Store']
 
+"" Deoplete Autocomplete
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_smart_case = 1
+
+call deoplete#custom#option('auto_refresh_delay', 1000) " ms
+call deoplete#custom#option('auto_complete_delay', 200) " ms
+
 " vim-javascript
 let g:javascript_plugin_jsdoc = 1
 
 " delimitMate
 let delimitMate_expand_cr = 1
 
-" Change cursor shape in different modes (only for OSX + iTerm (+ tmux)?)
+" ale
+" let g:ale_lint_on_save = 1
+" let g:ale_lint_on_text_changed = 'never'
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\}
+
+" Change cursor shape in difrent modes (only for OSX + iTerm (+ tmux)?)
 " see: http://vim.wikia.com/wiki/Change_cursor_shape_in_different_modes
 let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
 if v:version > 703 && has('patch687')
@@ -235,6 +264,11 @@ let g:tmuxline_powerline_separators = 0
 " ============================
 " Keymaps
 " ============================
+"
+" <TAB>: completion (to select top element of suggest in deoplete)
+" @see: https://github.com/Shougo/deoplete.nvim/issues/302
+" inoremap <expr><Tab>  pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr><S-Tab>  pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 nmap <Space> :NERDTreeToggle<CR>
 nmap f<Space> :NERDTreeFind<CR>
@@ -286,6 +320,8 @@ nmap _ <C-W>-
 
 let mapleader = ","
 
+nnoremap <Leader>td :TSDef<cr>
+
 " ,bl - Show buffers
 " nnoremap <Leader>bl :<C-u>ls<cr>:b
 nnoremap <Leader>bl :Buffers<cr>
@@ -309,7 +345,7 @@ nnoremap <Leader>p :set invpaste paste?<cr>
 " ,h - Clear the search highlight in Normal mode
 map <Leader>h :nohlsearch<cr>
 
-" C-p - Fuzzy seacrh
+" C-t - Fuzzy seacrh
 nnoremap <C-t> :Files<cr>
 
 " Reselect visual block after indent/outdent

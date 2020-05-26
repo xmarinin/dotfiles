@@ -59,6 +59,12 @@ Plug 'dense-analysis/ale' " Asynchronous Lint Engine
 " Plug 'Yggdroot/indentLine'
 " Plug 'easymotion/vim-easymotion'
 
+" Requires prettier that installed globally (npm install -g prettier)
+" use <Leader>p to apply prettier in opened file in buffer/tab
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+
 " Syntax Highlight
 Plug 'pangloss/vim-javascript', { 'for': ['js', 'jsx'] }
 Plug 'mxw/vim-jsx', { 'for': ['js', 'jsx'] }
@@ -339,8 +345,8 @@ nnoremap <Leader>bd :<C-u>bd!<cr>
 nnoremap <Leader>w <C-w>w
 
 " ,p - Like <p>, but adjust the indent to the current line and use the system clipboard
-"map <Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>
-nnoremap <Leader>p :set invpaste paste?<cr>
+" map <Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>
+" nnoremap <Leader>p :set invpaste paste?<cr>
 
 " ,h - Clear the search highlight in Normal mode
 map <Leader>h :nohlsearch<cr>
@@ -355,6 +361,17 @@ vnoremap > >gv
 " Ctrl+Shift+K or J now is the same as Ctrl+K or J
 " See: http://stackoverflow.com/questions/10340470/mapping-the-shift-key-in-vim
 " See: https://groups.google.com/forum/#!topic/vim_dev/Ym6D-kWIsyo
+
+" Tab mappings
+map <leader>tt :tabnew<CR>
+map <leader>te :tabedit 
+map <leader>tc :tabclose<CR>
+map <leader>to :tabonly<CR>
+map <leader>tn :tabnext<CR>
+map <leader>tp :tabprevious<CR>
+map <leader>tf :tabfirst<CR>
+map <leader>tl :tablast<CR>
+map <leader>tm :tabmove
 
 " Move one line
 " nnoremap <C-S-k> ddkP

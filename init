@@ -15,8 +15,14 @@ ln -sf $(pwd)/src/nvim/init.vim $HOME/.config/nvim/init.vim
 ln -sf $(pwd)/src/nvim/init.vim $HOME/.vimrc
 
 # ln -sf $(pwd)/src/vimrc $HOME/.vimrc
+ln -sf $(pwd)/src/zshrc $HOME/.zshrc
+ln -sf $(pwd)/src/ssh_config $HOME/.ssh/config
+ln -sf $(pwd)/src/zhistory $HOME/.zhistory
 ln -sf $(pwd)/src/tmux.conf $HOME/.tmux.conf
 ln -sf $(pwd)/src/gitconfig $HOME/.gitconfig
+
+# don't forget to delete default .zpreztorc link after installation
+ln -sf $(pwd)/src/zpreztorc $HOME/.zpreztorc
 
 logger "Create undo-dir for vim..."
 mkdir -p $HOME/.vim/undo-dir

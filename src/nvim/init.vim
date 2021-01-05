@@ -56,6 +56,7 @@ Plug 'Raimondi/delimitMate'
 Plug 'christoomey/vim-sort-motion'
 Plug 'christoomey/vim-system-copy'
 Plug 'dense-analysis/ale' " Asynchronous Lint Engine
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'Yggdroot/indentLine'
 " Plug 'easymotion/vim-easymotion'
 
@@ -232,11 +233,10 @@ let NERDTreeQuitOnOpen = 1
 let NERDTreeIgnore = ['.DS_Store']
 
 "" Deoplete Autocomplete
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_smart_case = 1
-
 call deoplete#custom#option('auto_refresh_delay', 1000) " ms
 call deoplete#custom#option('auto_complete_delay', 200) " ms
+call deoplete#custom#option('enable_at_startup', 1)
+call deoplete#custom#option('enable_smart_case', 1)
 
 " vim-javascript
 let g:javascript_plugin_jsdoc = 1

@@ -1,0 +1,10 @@
+# ----------------------------------------------
+# Docs: http://linux.die.net/man/5/ssh_config
+# ----------------------------------------------
+
+Host *
+    UseKeychain yes
+    ForwardAgent yes
+    AddKeysToAgent yes
+    StrictHostKeyChecking no
+    IdentityFile ~/.ssh/id_rsa

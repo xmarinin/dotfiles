@@ -4,7 +4,7 @@ Now it's just `.vimrc`, `.tmux.conf`, `.gitconfig`, and little bash-script `./in
 
 ## How to setup
 ```sh
-git clone https://github.com/Creamov/dotfiles.git && cd dotfiles && ./init && cd -
+git clone https://github.com/xmarinin/dotfiles.git && cd dotfiles && ./init && cd -
 ```
 
 ## MacOS Speed up

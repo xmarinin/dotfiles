@@ -1,4 +1,4 @@
-# Creamov 🌑 Dotfiles
+# xMarinin Dotfiles
 
 Now it's just `.vimrc`, `.tmux.conf`, `.gitconfig`, and little bash-script `./init` to setup. 
 
